@@ -1,5 +1,5 @@
- /* RecipeList component
-  import { useRecipeStore } from './components/recipeStore';
+ // RecipeList component
+  /*import { useRecipeStore } from './components/recipeStore';
 
   const RecipeList = () => {
     const recipes = useRecipeStore(state => state.recipes);
@@ -15,26 +15,24 @@
       </div>
     );
   };
-  export default RecipeList;
-  */
- import { create } from 'zustand';
-import { nanoid } from 'nanoid';
+  export default RecipeList;*/
 
-export const useRecipeStore = create((set) => ({
-  recipes: [],
-  
-  addRecipe: (recipe) =>
-    set((state) => ({
-      recipes: [...state.recipes, { ...recipe, id: nanoid() }]
-    })),
+  import React from 'react';
+import { useRecipeStore } from '../store/recipeStore';
 
-  updateRecipe: (id, updatedRecipe) =>
-    set((state) => ({
-      recipes: state.recipes.map((r) => (r.id === id ? { ...r, ...updatedRecipe } : r)),
-    })),
+const RecipeList = () => {
+  const recipes = useRecipeStore((state) => state.filteredRecipes);
 
-  deleteRecipe: (id) =>
-    set((state) => ({
-      recipes: state.recipes.filter((r) => r.id !== id),
-    })),
-}));
+  return (
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+      {recipes.map((recipe) => (
+        <div key={recipe.id} className="p-4 border rounded">
+          <h2 className="text-xl font-semibold">{recipe.title}</h2>
+          <p>{recipe.description}</p>
+        </div>
+      ))}
+    </div>
+  );
+};
+
+export default RecipeList;

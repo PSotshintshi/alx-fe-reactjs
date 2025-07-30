@@ -6,7 +6,9 @@ const useRecipeStore = create(set => ({
   setRecipes: (recipes) => set({ recipes })
 }));
 */
-import { create } from 'zustand';
+
+// 2nd commit
+/*import { create } from 'zustand';
 import { nanoid } from 'nanoid';
 
 export const useRecipeStore = create((set) => ({
@@ -25,5 +27,20 @@ export const useRecipeStore = create((set) => ({
   deleteRecipe: (id) =>
     set((state) => ({
       recipes: state.recipes.filter((r) => r.id !== id),
+    })),
+}));
+*/
+import { create } from 'zustand';
+
+const useRecipeStore = create((set) => ({
+  recipes: [],
+  searchTerm: '',
+  filteredRecipes: [],
+  setSearchTerm: (term) => set({ searchTerm: term }),
+  filterRecipes: () =>
+    set((state) => ({
+      filteredRecipes: state.recipes.filter((recipe) =>
+        recipe.title.toLowerCase().includes(state.searchTerm.toLowerCase())
+      ),
     })),
 }));
