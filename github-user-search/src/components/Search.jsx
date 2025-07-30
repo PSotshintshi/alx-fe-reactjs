@@ -40,7 +40,7 @@ export default function Search() {
 
       <div style={{ marginTop: '2rem' }}>
         {loading && <p>Loading...</p>}
-        {error && <p>Looks like we can't find the user.</p>}
+        {error && <p>Looks like we cant find the user</p>}
         {user && (
           <div>
             <img src={user.avatar_url} alt={user.login} width={100} style={{ borderRadius: '50%' }} />
