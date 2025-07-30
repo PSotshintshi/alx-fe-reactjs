@@ -1,6 +1,5 @@
 import { useState } from 'react'
 import SearchBar from './components/searchBar'
-import './index.css'
 import Search from './components/search'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
