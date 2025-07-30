@@ -17,8 +17,9 @@
   };
   export default RecipeList;*/
 
-  import React from 'react';
+import React from 'react';
 import { useRecipeStore } from '../store/recipeStore';
+import { Link } from 'react-router-dom';
 
 const RecipeList = () => {
   const recipes = useRecipeStore((state) => state.filteredRecipes);
@@ -29,6 +30,12 @@ const RecipeList = () => {
         <div key={recipe.id} className="p-4 border rounded">
           <h2 className="text-xl font-semibold">{recipe.title}</h2>
           <p>{recipe.description}</p>
+          <Link
+            to={`/recipes/${recipe.id}`}
+            className="text-blue-500 hover:underline mt-2 inline-block"
+          >
+            View Details
+          </Link>
         </div>
       ))}
     </div>
@@ -36,3 +43,4 @@ const RecipeList = () => {
 };
 
 export default RecipeList;
+
