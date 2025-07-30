@@ -22,3 +22,28 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# dependencies
+/node_modules
+
+# production
+/dist
+
+# env variables
+.env
+.env.*.local
+
+# system files
+.DS_Store
+Thumbs.db
+
+# IDE files
+.vscode
+.idea
+
+
+
+# local build cache
+/.parcel-cache
+/.turbo
+
