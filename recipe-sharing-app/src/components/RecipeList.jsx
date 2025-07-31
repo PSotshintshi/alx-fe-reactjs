@@ -20,6 +20,8 @@
 import React from 'react';
 import { useRecipeStore } from '../store/recipeStore';
 import { Link } from 'react-router-dom';
+import FavoriteButton from './FavoriteButton';
+import { Link } from 'react-router-dom';
 
 const RecipeList = () => {
   const recipes = useRecipeStore((state) => state.filteredRecipes);
@@ -39,7 +41,25 @@ const RecipeList = () => {
         </div>
       ))}
     </div>
+
   );
+  // Add favourite button
+
+const RecipeCard = ({ recipe }) => (
+  <div className="border p-4 rounded flex flex-col gap-2">
+    <div className="flex justify-between items-start">
+      <div>
+        <h2 className="text-lg font-semibold">{recipe.title}</h2>
+        <p className="text-sm">{recipe.description}</p>
+      </div>
+      <FavoriteButton recipeId={recipe.id} />
+    </div>
+    <Link to={`/recipes/${recipe.id}`} className="text-blue-500 underline">
+      View Details
+    </Link>
+  </div>
+);
+
 };
 
 export default RecipeList;

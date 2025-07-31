@@ -1,46 +1,27 @@
-/*import create from 'zustand'
+import { create } from 'zustand';
 
 const useRecipeStore = create(set => ({
   recipes: [],
-  addRecipe: (newRecipe) => set(state => ({ recipes: [...state.recipes, newRecipe] })),
-  setRecipes: (recipes) => set({ recipes })
-}));
-*/
-
-// 2nd commit
-/*import { create } from 'zustand';
-import { nanoid } from 'nanoid';
-
-export const useRecipeStore = create((set) => ({
-  recipes: [],
+  favorites: [],
+  recommendations: [],
   
-  addRecipe: (recipe) =>
-    set((state) => ({
-      recipes: [...state.recipes, { ...recipe, id: nanoid() }]
+  // Favorites
+  addFavorite: (recipeId) =>
+    set(state => ({
+      favorites: [...new Set([...state.favorites, recipeId])]
     })),
 
-  updateRecipe: (id, updatedRecipe) =>
-    set((state) => ({
-      recipes: state.recipes.map((r) => (r.id === id ? { ...r, ...updatedRecipe } : r)),
+  removeFavorite: (recipeId) =>
+    set(state => ({
+      favorites: state.favorites.filter(id => id !== recipeId)
     })),
 
-  deleteRecipe: (id) =>
-    set((state) => ({
-      recipes: state.recipes.filter((r) => r.id !== id),
-    })),
-}));
-*/
-import { create } from 'zustand';
-
-const useRecipeStore = create((set) => ({
-  recipes: [],
-  searchTerm: '',
-  filteredRecipes: [],
-  setSearchTerm: (term) => set({ searchTerm: term }),
-  filterRecipes: () =>
-    set((state) => ({
-      filteredRecipes: state.recipes.filter((recipe) =>
-        recipe.title.toLowerCase().includes(state.searchTerm.toLowerCase())
-      ),
-    })),
+  // Recommendations (basic mock)
+  generateRecommendations: () =>
+    set(state => {
+      const recommended = state.recipes.filter(
+        recipe => state.favorites.includes(recipe.id) && Math.random() > 0.5
+      );
+      return { recommendations: recommended };
+    }),
 }));
