@@ -2,6 +2,8 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './components/Home';
 import RecipeDetails from './components/RecipeDetails';
+import FavoritesList from './components/FavouriteList';
+import RecommendationsList from './components/RecommendationsList'
 import React from 'react';
 import SearchBar from './components/searchBar';
 import RecipeList from './components/RecipeList';
