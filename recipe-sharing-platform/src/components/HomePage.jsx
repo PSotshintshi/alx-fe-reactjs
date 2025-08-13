@@ -12,8 +12,8 @@ const HomePage = () => {
     <div className="min-h-screen bg-gray-100 p-4 sm:p-6 lg:p-8">
       <h1 className="text-3xl font-bold text-center mb-8">Recipe Collection</h1>
 
-      {/* Responsive grid: 1 col on mobile, 2 on small tablets, 3 on large screens */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      {/* Added md breakpoint */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
         {recipes.map((recipe, index) => (
           <div
             key={index}
