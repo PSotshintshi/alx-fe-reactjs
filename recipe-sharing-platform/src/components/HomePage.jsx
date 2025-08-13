@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom"; // ✅ Added Link import
 import recipesData from "../data/data.json";
 
 const HomePage = () => {
@@ -12,11 +13,11 @@ const HomePage = () => {
     <div className="min-h-screen bg-gray-100 p-4 sm:p-6 lg:p-8">
       <h1 className="text-3xl font-bold text-center mb-8">Recipe Collection</h1>
 
-      {/* Added md breakpoint */}
+      {/* Responsive grid: 1 col mobile, 2 cols small tablets, 3 cols medium, 4 cols large */}
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-        {recipes.map((recipe, index) => (
+        {recipes.map((recipe) => (
           <div
-            key={index}
+            key={recipe.id}
             className="bg-white rounded-lg shadow hover:shadow-lg transition-shadow duration-200 overflow-hidden flex flex-col"
           >
             <img
@@ -33,9 +34,13 @@ const HomePage = () => {
                 <span className="text-sm text-gray-500">
                   {recipe.cookingTime} mins
                 </span>
-                <button className="bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded text-sm">
+                {/* ✅ Link to RecipeDetail page */}
+                <Link
+                  to={`/recipe/${recipe.id}`}
+                  className="bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded text-sm"
+                >
                   View Recipe
-                </button>
+                </Link>
               </div>
             </div>
           </div>
