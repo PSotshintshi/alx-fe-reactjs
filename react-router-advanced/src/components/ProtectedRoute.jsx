@@ -1,12 +1,14 @@
 import React from "react";
 import { Navigate } from "react-router-dom";
-
-const isAuthenticated = false; 
+import useAuth from "../hooks/useAuth";
 
 function ProtectedRoute({ children }) {
+  const { isAuthenticated } = useAuth();
+
   if (!isAuthenticated) {
     return <Navigate to="/" replace />;
   }
+
   return children;
 }
 
