@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react"
 import { Link } from "react-router-dom"; // ✅ Added Link import
-import recipesData from "../data/data.json";
+import recipesData from "../data.json";
+
 
 const HomePage = () => {
   const [recipes, setRecipes] = useState([]);
