@@ -6,7 +6,8 @@ function RegistrationForm() {
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState({});
 
-  const validate = () => {
+
+   const validate = () => {
     let newErrors = {};
     if (!username.trim()) newErrors.username = "Username is required";
     if (!email.trim()) newErrors.email = "Email is required";
@@ -30,7 +31,6 @@ function RegistrationForm() {
       <h2 className="text-xl font-bold mb-4">User Registration</h2>
       <form onSubmit={handleSubmit} className="space-y-4">
         
-        {/* Username */}
         <div>
           <label className="block text-sm font-medium">Username</label>
           <input
@@ -42,7 +42,6 @@ function RegistrationForm() {
           {errors.username && <p className="text-red-500 text-sm">{errors.username}</p>}
         </div>
 
-        {/* Email */}
         <div>
           <label className="block text-sm font-medium">Email</label>
           <input
@@ -54,7 +53,6 @@ function RegistrationForm() {
           {errors.email && <p className="text-red-500 text-sm">{errors.email}</p>}
         </div>
 
-        {/* Password */}
         <div>
           <label className="block text-sm font-medium">Password</label>
           <input
@@ -66,7 +64,6 @@ function RegistrationForm() {
           {errors.password && <p className="text-red-500 text-sm">{errors.password}</p>}
         </div>
 
-        {/* Submit */}
         <button
           type="submit"
           className="w-full bg-blue-600 text-white p-2 rounded hover:bg-blue-700"
