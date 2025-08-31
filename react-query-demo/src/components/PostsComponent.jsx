@@ -10,9 +10,13 @@ const fetchPosts = async () => {
 };
 
 function PostsComponent() {
-  const { data, error, isLoading, isError } = useQuery({
+  const { data, error, isLoading, isError, isFetching } = useQuery({
     queryKey: ["posts"],
     queryFn: fetchPosts,
+    cacheTime: 1000 * 60 * 5,          
+    staleTime: 1000 * 30,              
+    refetchOnWindowFocus: false,      
+    keepPreviousData: true,            
   });
 
   if (isLoading) return <p>Loading posts...</p>;
@@ -21,6 +25,7 @@ function PostsComponent() {
   return (
     <div className="max-w-2xl w-full bg-white shadow rounded p-4">
       <h2 className="text-xl font-bold mb-4">Posts</h2>
+      {isFetching && <p className="text-gray-500 text-sm">Updating...</p>}
       <ul className="space-y-2 max-h-96 overflow-y-auto">
         {data.map((post) => (
           <li key={post.id} className="border p-2 rounded">
